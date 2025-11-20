@@ -25,10 +25,18 @@ class PasswordValidatorTest {
     }
 
     @ParameterizedTest
-    @DisplayName("Valid password is less 8 symbols")
+    @DisplayName("Password is less 8 symbols")
     @ValueSource(strings =
             {"abcdefg", "_ _ _ ", "1234", "1", ""})
     public void tooShortPassword(String password) {
+        testPassword(password, "TestUser", false);
+    }
+
+    @ParameterizedTest
+    @DisplayName("Password has no digits")
+    @ValueSource(strings =
+            {"asdfghjkl", "__TgTg__", "AbCdEfGhIjKlMn"})
+    public void noDigitsPassword(String password) {
         testPassword(password, "TestUser", false);
     }
 }

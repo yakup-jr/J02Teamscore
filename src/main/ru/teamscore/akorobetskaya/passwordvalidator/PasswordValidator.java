@@ -18,6 +18,18 @@ public class PasswordValidator {
         if (password.length() < 8) {
             return false;
         }
+        if (!hasDigits(password)) {
+            return false;
+        }
         return true;
+    }
+
+    private static boolean hasDigits(String text) {
+        for (char symbol : text.toCharArray()) {
+            if (Character.isDigit(symbol)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
