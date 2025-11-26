@@ -4,7 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * The type Check duplicates.
+ */
 public class CheckDuplicates {
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         System.out.printf(
             "Введите текст. Значения разделяйте нажатием enter.%n" +

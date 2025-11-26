@@ -5,6 +5,9 @@ import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 
+/**
+ * The type Week date iso.
+ */
 public class WeekDateIsoImpl implements WeekDate {
     @Override
     public List<LocalDate> getMondayAndSundayByDate(int year, int week) {

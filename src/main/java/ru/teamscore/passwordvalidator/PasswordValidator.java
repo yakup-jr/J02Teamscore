@@ -15,6 +15,14 @@ public class PasswordValidator {
 
     private PasswordValidator() {
     }
+
+    /**
+     * Validate password validation result.
+     *
+     * @param password the password
+     * @param userName the user name
+     * @return the validation result
+     */
     public static ValidationResult validatePassword(String password, String userName) {
         ValidationResult validationResult = new ValidationResult();
 
@@ -90,20 +98,37 @@ public class PasswordValidator {
         return false;
     }
 
+    /**
+     * The type Validation result.
+     */
     static class ValidationResult {
         private boolean isValid;
         private final List<String> errorMessages;
 
+        /**
+         * Instantiates a new Validation result.
+         */
         public ValidationResult() {
             this.isValid = true;
             this.errorMessages = new ArrayList<>();
         }
 
+        /**
+         * Instantiates a new Validation result.
+         *
+         * @param isValid       the is valid
+         * @param errorMessages the error messages
+         */
         public ValidationResult(boolean isValid, List<String> errorMessages) {
             this.isValid = isValid;
             this.errorMessages = errorMessages;
         }
 
+        /**
+         * Add error message.
+         *
+         * @param errorMessage the error message
+         */
         public void addErrorMessage(String errorMessage) {
             if (isValid) {
                 isValid = false;
@@ -111,10 +136,20 @@ public class PasswordValidator {
             errorMessages.add(errorMessage);
         }
 
+        /**
+         * Is valid boolean.
+         *
+         * @return the boolean
+         */
         public boolean isValid() {
             return isValid;
         }
 
+        /**
+         * Gets error messages.
+         *
+         * @return the error messages
+         */
         public List<String> getErrorMessages() {
             return errorMessages;
         }

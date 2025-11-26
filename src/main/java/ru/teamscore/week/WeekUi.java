@@ -4,10 +4,18 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
-import static ru.teamscore.week.WeekUiFormatterAndValidator.formatOutput;
-import static ru.teamscore.week.WeekUiFormatterAndValidator.validateInput;
+import static ru.teamscore.week.WeekIsoUiFormatterAndValidator.formatOutput;
+import static ru.teamscore.week.WeekIsoUiFormatterAndValidator.validateInput;
 
+/**
+ * The type Week ui.
+ */
 public class WeekUi {
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         try {
             Scanner sc = new Scanner(System.in);

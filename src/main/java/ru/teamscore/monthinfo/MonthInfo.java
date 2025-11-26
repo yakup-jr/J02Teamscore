@@ -5,12 +5,23 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.IsoFields;
 
+/**
+ * The type Month info.
+ */
 public record MonthInfo(LocalDate time) {
 
+    /**
+     * Instantiates a new Month info.
+     */
     public MonthInfo() {
         this(LocalDate.now());
     }
 
+    /**
+     * Gets month name.
+     *
+     * @return the month name
+     */
     public String getMonthName() {
         return switch (time.getMonth()) {
             case JANUARY -> "Январь";
@@ -28,10 +39,20 @@ public record MonthInfo(LocalDate time) {
         };
     }
 
+    /**
+     * Gets month number.
+     *
+     * @return the month number
+     */
     public int getMonthNumber() {
         return time.getMonthValue();
     }
 
+    /**
+     * Gets first day name of month.
+     *
+     * @return the first day name of month
+     */
     public String getFirstDayNameOfMonth() {
         DayOfWeek firstDayOfMonth =
             LocalDateTime.of(time.getYear(), time.getMonth(), 1, 0, 0).getDayOfWeek();
@@ -47,14 +68,29 @@ public record MonthInfo(LocalDate time) {
         };
     }
 
+    /**
+     * Gets last day of month.
+     *
+     * @return the last day of month
+     */
     public LocalDate getLastDayOfMonth() {
         return LocalDate.of(time.getYear(), time.getMonth(), time.lengthOfMonth());
     }
 
+    /**
+     * Gets days in month.
+     *
+     * @return the days in month
+     */
     public int getDaysInMonth() {
         return time.lengthOfMonth();
     }
 
+    /**
+     * Gets quartal with year.
+     *
+     * @return the quartal with year
+     */
     public String getQuartalWithYear() {
         int quarter = time.get(IsoFields.QUARTER_OF_YEAR);
         return String.format("%s Q%s", time.getYear(), quarter);

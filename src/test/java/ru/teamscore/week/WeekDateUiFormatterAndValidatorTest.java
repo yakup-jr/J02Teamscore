@@ -12,14 +12,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class WeekDateUiFormatterAndValidatorTest {
     @Test
     void validateInput() {
-        assertDoesNotThrow(() -> WeekUiFormatterAndValidator.validateInput(2025, 15));
+        assertDoesNotThrow(() -> WeekIsoUiFormatterAndValidator.validateInput(2025, 15));
     }
 
     @ParameterizedTest
     @CsvSource({"-2025, 1", "2025, -1", "2024, 54"})
     void validateInput_throwException(int year, int week) {
         assertThrows(IllegalArgumentException.class,
-            () -> WeekUiFormatterAndValidator.validateInput(year, week));
+            () -> WeekIsoUiFormatterAndValidator.validateInput(year, week));
     }
 
     /*
@@ -28,7 +28,7 @@ class WeekDateUiFormatterAndValidatorTest {
     */
     @Test
     void formatOutput() {
-        String result = WeekUiFormatterAndValidator.formatOutput(List.of(LocalDate.of(2025, 1, 6),
+        String result = WeekIsoUiFormatterAndValidator.formatOutput(List.of(LocalDate.of(2025, 1, 6),
             LocalDate.of(2025, 1, 12)));
         assertEquals(String.format("Пн: 2025-01-06%nВс: 2025-01-12"), result);
     }
