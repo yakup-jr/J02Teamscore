@@ -1,38 +1,22 @@
 package ru.teamscore.checkduplicates;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
-/**
- * The type Check duplicates.
- */
-public class CheckDuplicates {
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
+public class CheckDuplicateUi {
     public static void main(String[] args) {
         System.out.printf(
             "Введите текст. Значения разделяйте нажатием enter.%n" +
-                "Для выхода из программы нажмите esc%n");
-
-        List<String> values = new ArrayList<>();
-        boolean isRunning = true;
-
+                "Для выхода из программы введите esc%n");
         try (Scanner sc = new Scanner(System.in)) {
+            CheckDuplicate values = new CheckDuplicate();
+            boolean isRunning = true;
 
             while (isRunning) {
                 String value = sc.nextLine();
 
-                if (value.equalsIgnoreCase("esc")) {
+                if ("esc".equalsIgnoreCase(value)) {
                     isRunning = false;
                     continue;
-                }
-
-                if (values.contains(value)) {
-                    throw new AlreadyExistsException(value, values.indexOf(value) + 1);
                 }
 
                 values.add(value);

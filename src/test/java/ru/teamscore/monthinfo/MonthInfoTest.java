@@ -39,7 +39,7 @@ class MonthInfoTest {
     }
 
     @Nested
-    class getLastDayOfMonth {
+    class LastDayOfMonth {
         @Test
         void getLastDayOfMonth_whenNotLeapYear() {
             MonthInfo info = new MonthInfo(LocalDate.of(2025, 2, 10));
@@ -58,7 +58,7 @@ class MonthInfoTest {
     }
 
     @Nested
-    class getDaysInMonth {
+    class QuantityDaysInMonth {
         @Test
         void getDaysInMonth_when30() {
             MonthInfo jan = new MonthInfo(LocalDate.of(2025, 1, 1));
