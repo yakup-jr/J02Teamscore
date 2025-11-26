@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Java25-26_L02-UnitTests-Exceptions.iml" filepath="$PROJECT_DIR$/Java25-26_L02-UnitTests-Exceptions.iml" />
+      <module fileurl="file://$PROJECT_DIR$/J02.iml" filepath="$PROJECT_DIR$/J02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/J02.main.iml" filepath="$PROJECT_DIR$/.idea/modules/J02.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/J02.test.iml" filepath="$PROJECT_DIR$/.idea/modules/J02.test.iml" />
     </modules>
   </component>
 </project>
