@@ -1,5 +1,8 @@
 package ru.teamscore.passwordvalidator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Проверка пароля на сложность.
  * Пароль должен отвечать следующим требованиям:
@@ -12,7 +15,6 @@ public class PasswordValidator {
 
     private PasswordValidator() {
     }
-
     public static ValidationResult validatePassword(String password, String userName) {
         ValidationResult validationResult = new ValidationResult();
 
@@ -86,5 +88,50 @@ public class PasswordValidator {
             }
         }
         return false;
+    }
+
+    static class ValidationResult {
+        private boolean isValid;
+        private final List<String> errorMessages;
+
+        public ValidationResult() {
+            this.isValid = true;
+            this.errorMessages = new ArrayList<>();
+        }
+
+        public ValidationResult(boolean isValid, List<String> errorMessages) {
+            this.isValid = isValid;
+            this.errorMessages = errorMessages;
+        }
+
+        public void addErrorMessage(String errorMessage) {
+            if (isValid) {
+                isValid = false;
+            }
+            errorMessages.add(errorMessage);
+        }
+
+        public boolean isValid() {
+            return isValid;
+        }
+
+        public List<String> getErrorMessages() {
+            return errorMessages;
+        }
+
+        @Override
+        public final boolean equals(Object o) {
+            if (!(o instanceof PasswordValidator.ValidationResult result))
+                return false;
+
+            return isValid == result.isValid() && errorMessages.equals(result.getErrorMessages());
+        }
+
+        @Override
+        public int hashCode() {
+            int result = Boolean.hashCode(isValid);
+            result = 31 * result + errorMessages.hashCode();
+            return result;
+        }
     }
 }

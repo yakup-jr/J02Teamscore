@@ -1,4 +1,4 @@
-package ru.teamscore.core;
+package ru.teamscore.checkduplicates;
 
 public class AlreadyExistsException extends RuntimeException {
     private final String value;

@@ -1,4 +1,4 @@
-package ru.teamscore.core;
+package ru.teamscore.vat;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -43,4 +43,8 @@ public class Vat {
         };
     }
 
+    enum VatPriceOption {
+        EXCLUDING_VAT,
+        INCLUDING_VAT
+    }
 }

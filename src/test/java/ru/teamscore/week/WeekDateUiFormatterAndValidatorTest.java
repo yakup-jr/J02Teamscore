@@ -1,4 +1,4 @@
-package ru.teamscore.utils;
+package ru.teamscore.week;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -9,8 +9,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class WeekUiFormatterAndValidatorTest {
-
+class WeekDateUiFormatterAndValidatorTest {
     @Test
     void validateInput() {
         assertDoesNotThrow(() -> WeekUiFormatterAndValidator.validateInput(2025, 15));

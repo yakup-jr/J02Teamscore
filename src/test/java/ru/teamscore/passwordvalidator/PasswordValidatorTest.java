@@ -25,29 +25,35 @@ class PasswordValidatorTest {
     @DisplayName("Scenarios with invalid passwords")
     @MethodSource("provideValidatePassword")
     void validatePassword(String password, String username,
-                          ValidationResult expected) {
-        ValidationResult result = PasswordValidator.validatePassword(password, username);
+                          PasswordValidator.ValidationResult expected) {
+        PasswordValidator.ValidationResult
+            result = PasswordValidator.validatePassword(password, username);
         assertEquals(expected, result);
     }
 
     private static Stream<Arguments> provideValidatePassword() {
         return Stream.of(
-            Arguments.of("Test6789", "TestUser", new ValidationResult(true, List.of())),
+            Arguments.of("Test6789", "TestUser", new PasswordValidator.ValidationResult(true,
+                List.of())),
             Arguments.of("abcdefg", "TestUser",
-                new ValidationResult(false, List.of("Длина пароля меньше 8 символов", "Пароль " +
+                new PasswordValidator.ValidationResult(false, List.of("Длина пароля меньше 8 " +
+                    "символов", "Пароль " +
                     "должен содержать хотя бы 1 цифру", "Пароль должен содержать хотя бы 1 символ" +
                     " в верхнем регистре"))),
             Arguments.of("AbCdEfGhIjKlMn", "TestUser",
-                new ValidationResult(false, List.of("Пароль должен содержать хотя бы 1 цифру"))),
-            Arguments.of("P@$$W0RD", "TestUser", new ValidationResult(false,
+                new PasswordValidator.ValidationResult(false,
+                    List.of("Пароль должен содержать хотя бы 1 цифру"))),
+            Arguments.of("P@$$W0RD", "TestUser", new PasswordValidator.ValidationResult(false,
                 List.of("Пароль должен содержать хотя бы 1 символ в нижнем " +
                     "регистре"))),
-            Arguments.of(")(*&56nm", "TestUser", new ValidationResult(false, List.of("Пароль " +
-                "должен содержать хотя бы 1 символ в верхнем регистре"))),
-            Arguments.of("TestUser", "TestUser", new ValidationResult(false, List.of("Пароль " +
-                "должен содержать хотя бы 1 цифру", "Пароль не должен совпадать с именем " +
-                "пользователя"))),
-            Arguments.of("qwerty 1234", "TestUser", new ValidationResult(false,
+            Arguments.of(")(*&56nm", "TestUser",
+                new PasswordValidator.ValidationResult(false, List.of("Пароль " +
+                    "должен содержать хотя бы 1 символ в верхнем регистре"))),
+            Arguments.of("TestUser", "TestUser",
+                new PasswordValidator.ValidationResult(false, List.of("Пароль " +
+                    "должен содержать хотя бы 1 цифру", "Пароль не должен совпадать с именем " +
+                    "пользователя"))),
+            Arguments.of("qwerty 1234", "TestUser", new PasswordValidator.ValidationResult(false,
                 List.of("Пароль должен содержать хотя бы 1 символ в верхнем регистре",
                     "Пароль не должен содержать пробелов или кавычек")))
         );

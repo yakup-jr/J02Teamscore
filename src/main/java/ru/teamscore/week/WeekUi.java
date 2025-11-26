@@ -1,13 +1,11 @@
-package ru.teamscore.ui;
-
-import ru.teamscore.core.WeekIsoImpl;
+package ru.teamscore.week;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
-import static ru.teamscore.utils.WeekUiFormatterAndValidator.formatOutput;
-import static ru.teamscore.utils.WeekUiFormatterAndValidator.validateInput;
+import static ru.teamscore.week.WeekUiFormatterAndValidator.formatOutput;
+import static ru.teamscore.week.WeekUiFormatterAndValidator.validateInput;
 
 public class WeekUi {
     public static void main(String[] args) {
@@ -21,7 +19,7 @@ public class WeekUi {
 
             validateInput(year, week);
 
-            List<LocalDate> weekDates = new WeekIsoImpl().getWeekDates(year, week);
+            List<LocalDate> weekDates = new WeekDateIsoImpl().getMondayAndSundayByDate(year, week);
 
             System.out.println(formatOutput(weekDates));
         } catch (NumberFormatException e) {

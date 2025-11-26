@@ -1,4 +1,4 @@
-package ru.teamscore.utils;
+package ru.teamscore.week;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -6,7 +6,6 @@ import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 
 public class WeekUiFormatterAndValidator {
-
     private WeekUiFormatterAndValidator() {
     }
 
@@ -23,12 +22,11 @@ public class WeekUiFormatterAndValidator {
                 .plusWeeks((long) week - 1);
         if (dateConstraints.getYear() > year) {
             throw new IllegalArgumentException(
-                "Номер недели не может быть больше, чем их " + "количество в году");
+                "Номер недели не может быть больше, чем их количество в году");
         }
     }
 
     public static String formatOutput(List<LocalDate> dates) {
         return String.format("Пн: %s%n", dates.get(0)) + String.format("Вс: %s", dates.get(1));
     }
-
 }

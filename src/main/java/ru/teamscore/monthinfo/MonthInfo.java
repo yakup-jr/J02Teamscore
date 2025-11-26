@@ -1,4 +1,4 @@
-package ru.teamscore.core;
+package ru.teamscore.monthinfo;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;

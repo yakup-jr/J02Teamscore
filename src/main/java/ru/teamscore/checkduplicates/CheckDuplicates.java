@@ -1,26 +1,32 @@
-package ru.teamscore.ui;
-
-import ru.teamscore.core.AlreadyExistsException;
+package ru.teamscore.checkduplicates;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class CheckDuplicates {
-
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("Введите текст. Значения разделяйте нажатием enter");
+        System.out.printf(
+            "Введите текст. Значения разделяйте нажатием enter.%n" +
+                "Для выхода из программы нажмите esc%n");
 
         List<String> values = new ArrayList<>();
+        boolean isRunning = true;
 
-        try {
-            while (true) {
+        try (Scanner sc = new Scanner(System.in)) {
+
+            while (isRunning) {
                 String value = sc.nextLine();
+
+                if (value.equalsIgnoreCase("esc")) {
+                    isRunning = false;
+                    continue;
+                }
+
                 if (values.contains(value)) {
                     throw new AlreadyExistsException(value, values.indexOf(value) + 1);
                 }
+
                 values.add(value);
             }
         } catch (AlreadyExistsException e) {
@@ -28,5 +34,4 @@ public class CheckDuplicates {
                 e.getValue(), e.getPosition());
         }
     }
-
 }

@@ -1,4 +1,4 @@
-package ru.teamscore.core;
+package ru.teamscore.vat;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class VatTest {
-
     @ParameterizedTest
     @MethodSource("provideGetAmountWithVat")
     void getAmountWithVat(Vat vat, BigDecimal expected) {
@@ -21,15 +20,15 @@ class VatTest {
 
     private static Stream<Arguments> provideGetAmountWithVat() {
         return Stream.of(
-            Arguments.of(Vat.valueOf(new BigDecimal("99.99"), VatPriceOption.EXCLUDING_VAT),
+            Arguments.of(Vat.valueOf(new BigDecimal("99.99"), Vat.VatPriceOption.EXCLUDING_VAT),
                 new BigDecimal("119.99")),
-            Arguments.of(Vat.valueOf(new BigDecimal("92.40"), VatPriceOption.INCLUDING_VAT),
+            Arguments.of(Vat.valueOf(new BigDecimal("92.40"), Vat.VatPriceOption.INCLUDING_VAT),
                 new BigDecimal("92.40")),
-            Arguments.of(Vat.valueOf(new BigDecimal("83.32"), VatPriceOption.EXCLUDING_VAT),
+            Arguments.of(Vat.valueOf(new BigDecimal("83.32"), Vat.VatPriceOption.EXCLUDING_VAT),
                 new BigDecimal("99.98")),
-            Arguments.of(Vat.valueOf(new BigDecimal("5.94"), VatPriceOption.INCLUDING_VAT),
+            Arguments.of(Vat.valueOf(new BigDecimal("5.94"), Vat.VatPriceOption.INCLUDING_VAT),
                 new BigDecimal("5.94")),
-            Arguments.of(Vat.valueOf(new BigDecimal("0"), VatPriceOption.INCLUDING_VAT),
+            Arguments.of(Vat.valueOf(new BigDecimal("0"), Vat.VatPriceOption.INCLUDING_VAT),
                 new BigDecimal("0.00"))
         );
     }
@@ -42,15 +41,15 @@ class VatTest {
 
     private static Stream<Arguments> provideGetVatForCheck() {
         return Stream.of(
-            Arguments.of(Vat.valueOf(new BigDecimal("99.99"), VatPriceOption.EXCLUDING_VAT),
+            Arguments.of(Vat.valueOf(new BigDecimal("99.99"), Vat.VatPriceOption.EXCLUDING_VAT),
                 new BigDecimal("20.00")),
-            Arguments.of(Vat.valueOf(new BigDecimal("92.40"), VatPriceOption.INCLUDING_VAT),
+            Arguments.of(Vat.valueOf(new BigDecimal("92.40"), Vat.VatPriceOption.INCLUDING_VAT),
                 new BigDecimal("15.40")),
-            Arguments.of(Vat.valueOf(new BigDecimal("83.32"), VatPriceOption.EXCLUDING_VAT),
+            Arguments.of(Vat.valueOf(new BigDecimal("83.32"), Vat.VatPriceOption.EXCLUDING_VAT),
                 new BigDecimal("16.66")),
-            Arguments.of(Vat.valueOf(new BigDecimal("5.94"), VatPriceOption.INCLUDING_VAT),
+            Arguments.of(Vat.valueOf(new BigDecimal("5.94"), Vat.VatPriceOption.INCLUDING_VAT),
                 new BigDecimal("0.99")),
-            Arguments.of(Vat.valueOf(new BigDecimal("0"), VatPriceOption.INCLUDING_VAT),
+            Arguments.of(Vat.valueOf(new BigDecimal("0"), Vat.VatPriceOption.INCLUDING_VAT),
                 new BigDecimal("0.00"))
         );
     }
@@ -64,15 +63,15 @@ class VatTest {
 
     private static Stream<Arguments> provideGetVatForTaxReturn() {
         return Stream.of(
-            Arguments.of(Vat.valueOf(new BigDecimal("99.99"), VatPriceOption.EXCLUDING_VAT),
+            Arguments.of(Vat.valueOf(new BigDecimal("99.99"), Vat.VatPriceOption.EXCLUDING_VAT),
                 new BigDecimal("20")),
-            Arguments.of(Vat.valueOf(new BigDecimal("92.40"), VatPriceOption.INCLUDING_VAT),
+            Arguments.of(Vat.valueOf(new BigDecimal("92.40"), Vat.VatPriceOption.INCLUDING_VAT),
                 new BigDecimal("15")),
-            Arguments.of(Vat.valueOf(new BigDecimal("83.32"), VatPriceOption.EXCLUDING_VAT),
+            Arguments.of(Vat.valueOf(new BigDecimal("83.32"), Vat.VatPriceOption.EXCLUDING_VAT),
                 new BigDecimal("17")),
-            Arguments.of(Vat.valueOf(new BigDecimal("5.94"), VatPriceOption.INCLUDING_VAT),
+            Arguments.of(Vat.valueOf(new BigDecimal("5.94"), Vat.VatPriceOption.INCLUDING_VAT),
                 new BigDecimal("1")),
-            Arguments.of(Vat.valueOf(new BigDecimal("0"), VatPriceOption.INCLUDING_VAT),
+            Arguments.of(Vat.valueOf(new BigDecimal("0"), Vat.VatPriceOption.INCLUDING_VAT),
                 new BigDecimal("0"))
         );
     }
@@ -85,13 +84,13 @@ class VatTest {
 
     private static Stream<Arguments> provideValueOf() {
         return Stream.of(
-            Arguments.of(Vat.valueOf(new BigDecimal("100"), VatPriceOption.EXCLUDING_VAT),
+            Arguments.of(Vat.valueOf(new BigDecimal("100"), Vat.VatPriceOption.EXCLUDING_VAT),
                 new BigDecimal("100.00")),
-            Arguments.of(Vat.valueOf(new BigDecimal("100"), VatPriceOption.INCLUDING_VAT),
+            Arguments.of(Vat.valueOf(new BigDecimal("100"), Vat.VatPriceOption.INCLUDING_VAT),
                 new BigDecimal("83.33")),
-            Arguments.of(Vat.valueOf(new BigDecimal("0"), VatPriceOption.EXCLUDING_VAT),
+            Arguments.of(Vat.valueOf(new BigDecimal("0"), Vat.VatPriceOption.EXCLUDING_VAT),
                 new BigDecimal("0.00")),
-            Arguments.of(Vat.valueOf(new BigDecimal("0"), VatPriceOption.INCLUDING_VAT),
+            Arguments.of(Vat.valueOf(new BigDecimal("0"), Vat.VatPriceOption.INCLUDING_VAT),
                 new BigDecimal("0.00"))
         );
     }
@@ -100,6 +99,6 @@ class VatTest {
     void valueOf_whenAmountNegative_throwIllegalArgumentException() {
         BigDecimal amount = new BigDecimal("-1");
         assertThrows(IllegalArgumentException.class,
-            () -> Vat.valueOf(amount, VatPriceOption.EXCLUDING_VAT));
+            () -> Vat.valueOf(amount, Vat.VatPriceOption.EXCLUDING_VAT));
     }
 }
