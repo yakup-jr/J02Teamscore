@@ -22,14 +22,13 @@ class WeekDateUiFormatterAndValidatorTest {
             () -> WeekIsoUiFormatterAndValidator.validateInput(year, week));
     }
 
-    /*
-    Не хватает метода проверки на содержание подстроки. В данном случае использовал бы AssertJ,
-    сравнив подстроки дат вывода
-    */
     @Test
     void formatOutput() {
-        String result = WeekIsoUiFormatterAndValidator.formatOutput(List.of(LocalDate.of(2025, 1, 6),
-            LocalDate.of(2025, 1, 12)));
-        assertEquals(String.format("Пн: 2025-01-06%nВс: 2025-01-12"), result);
+        String result =
+            WeekIsoUiFormatterAndValidator.formatOutput(List.of(LocalDate.of(2025, 1, 6),
+                LocalDate.of(2025, 1, 12)));
+        assertTrue(result.contains("2025-01-06"));
+        assertTrue(result.contains("2025-01-12"));
+        assertEquals("Пн: 2025-01-06%nВс: 2025-01-12", result);
     }
 }
